@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f4ef">
+<title>Loomtrace — Brand Admin</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--ink:#172b26;--muted:#708079;--green:#244c3b;--lime:#d9f077;--paper:#f5f4ef;--line:#e3e5dc;--white:#fff;--orange:#e88556}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:14px}
+button,input,textarea,select{font:inherit}button{cursor:pointer}.shell{max-width:1000px;margin:auto;padding:0 28px}
+.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:11px;align-items:center;font-family:Manrope,sans-serif;font-weight:800;font-size:19px;letter-spacing:-.7px}.brand-mark{width:31px;height:31px;border-radius:10px;background:var(--green);display:grid;place-items:center;color:var(--lime);font-size:18px}
+a{color:var(--green);text-decoration:none}.tag{font:10px 'DM Mono';letter-spacing:.1em;text-transform:uppercase;color:#718078}
+main{padding:34px 0 60px}.intro{margin-bottom:25px}.intro h1{font:700 clamp(30px,4vw,42px)/1.1 Manrope,sans-serif;letter-spacing:-1.5px;margin:10px 0}.intro p{color:var(--muted);margin:0;line-height:1.6}
+.notice{background:#eef3e7;border:1px solid #d9e5cf;border-radius:8px;padding:12px 14px;color:#506746;font-size:12px;line-height:1.6;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:white;border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:18px}.card h2{font:700 16px Manrope,sans-serif;margin:0 0 5px}.hint{font-size:12px;color:var(--muted);margin:0 0 18px;line-height:1.5}
+label{display:block;font-size:12px;font-weight:700;margin:0 0 7px}.field{margin-bottom:15px}input,textarea,select{width:100%;border:1px solid #d9ded4;border-radius:7px;background:#fff;padding:11px 12px;color:var(--ink);outline:none}input:focus,textarea:focus,select:focus{border-color:#72916a;box-shadow:0 0 0 3px #e8f0e2}textarea{min-height:76px;resize:vertical}input[type=file]{padding:9px;font-size:12px}small.help{display:block;color:#89938a;font-size:11px;margin-top:6px;line-height:1.45}
+.stage{border:1px solid var(--line);border-radius:8px;padding:14px;margin-top:12px}.stage-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.stage-head b{font-size:13px}.remove{border:0;background:#f8ece7;color:#98543c;border-radius:5px;padding:6px 8px;font-size:11px}.stage-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}.btn{border:1px solid #cbd2c8;border-radius:7px;padding:11px 15px;background:white;color:var(--ink);font-weight:700}.btn.primary{background:var(--green);border-color:var(--green);color:white}.btn:disabled{opacity:.5;cursor:not-allowed}
+.status{display:inline-block;padding:5px 8px;border-radius:5px;background:#f0f2ed;color:#5b6a60;font:10px 'DM Mono';text-transform:uppercase;letter-spacing:.05em}.saved{margin-top:14px;padding:12px;border-radius:7px;background:#eef4e6;color:#4b6a3e;font-size:12px;display:none;line-height:1.5}
+.records{margin-top:18px}.record{border-top:1px solid var(--line);padding:13px 0;display:flex;justify-content:space-between;gap:12px;align-items:start}.record p{margin:5px 0 0;color:var(--muted);font-size:12px}.footer{border-top:1px solid var(--line);padding:18px 0 28px;color:#89938a;font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:680px){.shell{padding:0 15px}.grid,.stage-grid{grid-template-columns:1fr}.card{padding:16px}.topbar{height:66px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">↗</span>loomtrace</div>
+  <a href="index.html">← View public passport</a>
+</header>
+<main>
+  <div class="intro">
+    <div class="tag">BRAND WORKSPACE / MVP DEMO</div>
+    <h1>Build a product passport.</h1>
+    <p>Add the product story and the evidence behind each supply-chain step.</p>
+  </div>
+  <div class="notice"><strong>Prototype notice:</strong> This page saves data in this browser only. It is not a secure login or shared database yet. Uploaded files are not uploaded to a server; for this demo, add evidence links or choose a file as a local reference. Do not enter confidential information.</div>
+  <form id="productForm">
+    <section class="card">
+      <h2>Product details</h2><p class="hint">Start with one product for the Loomtrace demo.</p>
+      <div class="grid">
+        <div class="field"><label for="productName">Product name *</label><input id="productName" required placeholder="e.g. Everyday cotton tee"></div>
+        <div class="field"><label for="brandName">Brand / maker *</label><input id="brandName" required placeholder="e.g. Field Notes Studio"></div>
+        <div class="field"><label for="material">Main material *</label><input id="material" required placeholder="e.g. Organic cotton"></div>
+        <div class="field"><label for="origin">Country of manufacture</label><input id="origin" placeholder="e.g. Portugal"></div>
+        <div class="field"><label for="color">Colour / variant</label><input id="color" placeholder="e.g. Olive, unisex"></div>
+        <div class="field"><label for="productId">Product ID</label><input id="productId" placeholder="e.g. LT-TEE-001"><small class="help">Leave blank to generate a demo ID.</small></div>
+      </div>
+    </section>
+    <section class="card">
+      <h2>Supply-chain journey</h2><p class="hint">Add a stage and any supporting evidence. New stages start as Submitted; mark Reviewed only after a human has checked the evidence.</p>
+      <div id="stages"></div>
+      <button type="button" class="btn" id="addStage">+ Add supply-chain stage</button>
+    </section>
+    <section class="card">
+      <h2>Passport status</h2><p class="hint">This status is for the demo record. “Reviewed” should only be used after evidence has actually been checked.</p>
+      <div class="field"><label for="overallStatus">Overall status</label><select id="overallStatus"><option>Submitted</option><option>Needs evidence</option><option>Reviewed</option></select></div>
+      <div class="field"><label for="notes">Reviewer notes / missing evidence</label><textarea id="notes" placeholder="e.g. Please provide a current certificate for the organic cotton claim."></textarea></div>
+      <div class="actions"><button class="btn primary" type="submit">Save demo passport</button><button class="btn" type="button" id="preview">Preview saved data</button><button class="btn" type="button" id="clear">Clear form</button></div>
+      <div class="saved" id="message" role="status"></div>
+    </section>
+  </form>
+  <section class="card records">
+    <h2>Saved in this browser</h2><p class="hint">Demo records stored locally on this device. They are not visible to your friend or other users.</p>
+    <div id="recordList"><p class="hint">No saved records yet.</p></div>
+  </section>
+</main>
+<footer class="footer"><span><strong>loomtrace</strong> · Brand workspace prototype</span><span>Demo data only · No claims are independently verified by this page</span></footer>
+</div>
+<script>
+const STORAGE_KEY = 'loomtrace_demo_passports_v1';
+const stagesEl = document.querySelector('#stages');
+const form = document.querySelector('#productForm');
+const message = document.querySelector('#message');
+let stageCount = 0;
+
+function addStage(data = {}) {
+  stageCount += 1;
+  const wrap = document.createElement('div');
+  wrap.className = 'stage';
+  wrap.innerHTML = `
+    <div class="stage-head"><b>Supply-chain stage ${stageCount}</b><button class="remove" type="button">Remove stage</button></div>
+    <div class="stage-grid">
+      <div class="field"><label>Stage name *</label><input class="s-name" required placeholder="e.g. Cotton grown" value="${escapeAttr(data.name || '')}"></div>
+      <div class="field"><label>Location / supplier</label><input class="s-location" placeholder="e.g. Farm, region, country" value="${escapeAttr(data.location || '')}"></div>
+      <div class="field"><label>Date</label><input class="s-date" type="date" value="${escapeAttr(data.date || '')}"></div>
+      <div class="field"><label>Evidence URL</label><input class="s-evidence" type="url" placeholder="https://..." value="${escapeAttr(data.evidenceUrl || '')}"></div>
+    </div>
+    <div class="field"><label>Evidence file (local reference only)</label><input class="s-file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp"><small class="help">The file is not uploaded or saved by this prototype. Use a shareable evidence URL for the demo.</small></div>
+    <div class="field"><label>Review status</label><select class="s-status"><option ${data.status === 'Submitted' || !data.status ? 'selected' : ''}>Submitted</option><option ${data.status === 'Reviewed' ? 'selected' : ''}>Reviewed</option><option ${data.status === 'Needs evidence' ? 'selected' : ''}>Needs evidence</option></select></div>`;
+  wrap.querySelector('.remove').addEventListener('click', () => wrap.remove());
+  stagesEl.appendChild(wrap);
+}
+function escapeAttr(value) {
+  return String(value).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+}
+function getRecords() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
+}
+function readStages() {
+  return [...stagesEl.querySelectorAll('.stage')].map(el => ({
+    name: el.querySelector('.s-name').value.trim(),
+    location: el.querySelector('.s-location').value.trim(),
+    date: el.querySelector('.s-date').value,
+    evidenceUrl: el.querySelector('.s-evidence').value.trim(),
+    status: el.querySelector('.s-status').value,
+    fileReference: el.querySelector('.s-file').files[0]?.name || ''
+  }));
+}
+function showMessage(text) {
+  message.textContent = text;
+  message.style.display = 'block';
+}
+function renderRecords() {
+  const list = document.querySelector('#recordList');
+  const records = getRecords();
+  if (!records.length) { list.innerHTML = '<p class="hint">No saved records yet.</p>'; return; }
+  list.innerHTML = '';
+  records.forEach(record => {
+    const item = document.createElement('div');
+    item.className = 'record';
+    const left = document.createElement('div');
+    const title = document.createElement('strong');
+    title.textContent = record.productName;
+    const desc = document.createElement('p');
+    desc.textContent = `${record.brandName} · ${record.productId} · ${record.stages.length} stages`;
+    left.append(title, desc);
+    const status = document.createElement('span');
+    status.className = 'status';
+    status.textContent = record.overallStatus;
+    item.append(left, status);
+    list.appendChild(item);
+  });
+}
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  const record = {
+    productName: document.querySelector('#productName').value.trim(),
+    brandName: document.querySelector('#brandName').value.trim(),
+    material: document.querySelector('#material').value.trim(),
+    origin: document.querySelector('#origin').value.trim(),
+    color: document.querySelector('#color').value.trim(),
+    productId: document.querySelector('#productId').value.trim() || `LT-DEMO-${Date.now().toString().slice(-6)}`,
+    overallStatus: document.querySelector('#overallStatus').value,
+    notes: document.querySelector('#notes').value.trim(),
+    stages: readStages(),
+    updatedAt: new Date().toISOString()
+  };
+  const records = getRecords();
+  const index = records.findIndex(item => item.productId === record.productId);
+  if (index >= 0) records[index] = record; else records.unshift(record);
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+    document.querySelector('#productId').value = record.productId;
+    showMessage(`Saved “${record.productName}” in this browser. This is local demo storage, not a shared database.`);
+    renderRecords();
+  } catch {
+    showMessage('Could not save in this browser. Try removing large files; this prototype stores file names only, not file contents.');
+  }
+});
+document.querySelector('#addStage').addEventListener('click', () => addStage());
+document.querySelector('#preview').addEventListener('click', () => {
+  const records = getRecords();
+  if (!records.length) { showMessage('No saved passport yet. Fill the form and click Save demo passport first.'); return; }
+  const record = records[0];
+  const summary = `${record.productName}\nBrand: ${record.brandName}\nMaterial: ${record.material}\nID: ${record.productId}\nStatus: ${record.overallStatus}\nStages: ${record.stages.map(s => `${s.name} — ${s.status}${s.evidenceUrl ? ' — ' + s.evidenceUrl : ''}`).join('\n')}`;
+  const w = window.open('', '_blank');
+  if (!w) { showMessage('Pop-up blocked. Allow pop-ups to preview the saved data.'); return; }
+  w.document.write('<!DOCTYPE html><html><head><title>Loomtrace demo preview</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font:16px Arial,sans-serif;max-width:760px;margin:40px auto;padding:0 20px;color:#172b26;line-height:1.6}pre{white-space:pre-wrap;background:#f5f4ef;padding:20px;border-radius:8px}</style></head><body><h1>Loomtrace passport preview</h1><p>Demo preview — not a public passport URL.</p><pre id="data"></pre></body></html>');
+  w.document.close();
+  w.document.querySelector('#data').textContent = summary;
+});
+document.querySelector('#clear').addEventListener('click', () => {
+  if (!confirm('Clear the form? Saved records will remain in this browser.')) return;
+  form.reset(); stagesEl.innerHTML = ''; stageCount = 0; addStage(); message.style.display = 'none';
+});
+addStage({name:'Cotton grown'});
+addStage({name:'Fiber spun'});
+renderRecords();
+</script>
+</body>
+</html>
