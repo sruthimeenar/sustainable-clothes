@@ -1,1 +1,6 @@
 loomtrace.zip
+*.zip
+outputs/
+.env
+.env.*
+!.env.example
